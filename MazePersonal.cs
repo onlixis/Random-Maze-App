@@ -8,17 +8,17 @@ using System.Threading.Tasks;
 using System.Threading;
 using System.Runtime.InteropServices;
 
-public class MazePersonal //parent class, contains main methods Like print or etc
+public class MazePersonal // parent class, contains main methods Like print or etc
 {
-    protected bool isStepByStep = false; // to see making of maze step by step
-
-    protected bool[,] isBorders = new bool[mazeHeight, mazeWidth]; // array of boolians, that represents borders of maze, so it may not do IndexOutOfRangeExeption shit
+    protected bool isStepByStep = true;  // to see making of maze step by step
+    public bool[,] isCorridor { get; protected set; } = new bool[mazeHeight, mazeWidth]; // array of boolians, that represents tiles that is corridor of maze
+    public bool[,] isBorders { get; protected set; } = new bool[mazeHeight, mazeWidth]; // array of boolians, that represents borders of maze, so it may not do IndexOutOfRangeExeption shit
+   
     protected Random rand = new Random(); // random number
-    static protected int mazeHeight,mazeWidth; //height and width of maze
+    static protected int mazeHeight,mazeWidth; // height and width of maze
     protected int xPlayer = 1 , yPlayer = 0; // pozition of "player" or cursor, as you wish
-    protected bool[,] isCorridor = new bool[mazeHeight, mazeWidth]; // array of boolians, that represents tiles that is corridor of maze
 
-    public MazePersonal(){}//constructor
+    public MazePersonal(){}     // constructor
     protected virtual void mapBuild() //SKIP IT. my personal try to make a maze, nvm. It doesnt works yet, but maybe in future..
     {
         isBorders = new bool[mazeHeight, mazeWidth];
@@ -127,7 +127,6 @@ public class MazePersonal //parent class, contains main methods Like print or et
             Console.BackgroundColor = ConsoleColor.White;
             Console.Write(" ");
             Console.ResetColor();
-            Console.SetCursorPosition(mazeWidth + 1, mazeHeight + 1);
         }
     }
 
@@ -139,7 +138,6 @@ public class MazePersonal //parent class, contains main methods Like print or et
             Console.BackgroundColor = ConsoleColor.Magenta;
             Console.Write(" ");
             Console.ResetColor();
-            Console.SetCursorPosition(mazeWidth + 1, mazeHeight + 1);
         }
     }
 }

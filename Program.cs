@@ -18,14 +18,24 @@ namespace Random_Maze
            
 
             MazeDeepF mazeDeepF = new MazeDeepF(); //class that makes maze with DFS algorithm
+            Player player = new Player();
             
-             Console.CursorVisible = false; // Hide cursor
+            Console.CursorVisible = false; // Hide cursor
 
-            mazeDeepF.SetMazeSize(117, 29); // method that gives size of maze to mazeDeepF class
+            mazeDeepF.SetMazeSize(15,28); // method that gives size of maze to mazeDeepF class. MIN: (9,10) MAX: (115,28). ONLY (ODDA TAL, JÄMN TAL)
             mazeDeepF.MapBuild(); //builds maze
 
-            Console.WriteLine("Time elapsed: " + mazeDeepF.stopwatch.Elapsed.TotalMilliseconds + " ms");
+
             long memoryAfter = GC.GetTotalMemory(false);
+
+            bool GameIsOn = true;
+
+            while (GameIsOn)
+            {
+                GameIsOn = player.PlayerMove(mazeDeepF); // if false - he found exit, else is continue 
+            }
+
+            Console.WriteLine("Time elapsed: " + mazeDeepF.stopwatch.Elapsed.TotalMilliseconds + " ms");
             float rounded = (float)memoryAfter;
             Console.WriteLine("Memory taken: " + Math.Round( rounded) / 1024 + " KB");//How much time it takes to make maze
 
